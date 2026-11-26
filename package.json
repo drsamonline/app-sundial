@@ -1,0 +1,6 @@
+{ "name": "app-sundial", "version": "1.0.0", "private": true,
+  "description": "A calendar you schedule by drawing shadows on an arc from sunrise to sunset.",
+  "license": "PolyForm-Noncommercial-1.0.0", "author": "Dr Sohil Momin",
+  "scripts": { "test": "node tests/self-tests.js && node tests/page-smoke.js && node tests/ui-tests.js",
+    "test:engine": "node tests/self-tests.js", "test:shape": "node tests/page-smoke.js", "test:ui": "node tests/ui-tests.js" },
+  "devDependencies": { "jsdom": "^24.0.0" } }

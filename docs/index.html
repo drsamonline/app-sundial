@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sundial — a calendar you schedule by drawing shadows</title>
+<meta name="description" content="The day is an arc from sunrise to sunset. An event is a shadow on it: where the shadow falls is when it starts, and how long it is is how long it lasts.">
+<meta name="theme-color" content="#2b2416">
+<style>
+  :root{--bg:#fbf6ea;--panel:#fffdf6;--ink:#2b2416;--muted:#6f6552;--line:#e4dcc6;--accent:#8a6a3a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+  main{max-width:740px;margin:0 auto;padding:50px 20px 64px}
+  h1{font-size:33px;line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
+  .lede{font-size:18px;color:var(--muted);margin:0 0 26px}
+  .cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:9px}
+  .status{margin:26px 0;padding:14px 16px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;background:var(--panel);font-size:14px}
+  .status b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+  h2{font-size:17px;margin:30px 0 8px}
+  ul{padding-left:20px}li{margin:4px 0}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:#f0e8d4;padding:1px 5px;border-radius:4px}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin-top:8px}
+  th,td{text-align:left;border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  .dial{margin:22px 0;padding:0 0 8px}
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+  a{color:var(--accent)}
+</style></head>
+<body><main>
+  <h1>Sundial</h1>
+  <p class="lede">A calendar you schedule by drawing shadows. The day is an arc from sunrise to sunset; an event is a shadow on it. <strong>Where the shadow falls is when it starts, and how long it is is how long it lasts.</strong></p>
+  <a class="cta" href="play/index.html">Open Sundial</a>
+
+  <svg class="dial" viewBox="0 0 100 42" width="100%" height="120" aria-label="the day as an arc">
+    <path d="M2 38 A 48 34 0 0 1 98 38" fill="none" stroke="#c9a86a" stroke-width="1.2"/>
+    <line x1="26" y1="38" x2="26" y2="16" stroke="#8a6a3a" stroke-width="2.4"/>
+    <line x1="50" y1="38" x2="50" y2="8" stroke="#8a6a3a" stroke-width="2.4"/>
+    <line x1="74" y1="38" x2="74" y2="16" stroke="#8a6a3a" stroke-width="2.4"/>
+    <text x="26" y="41" font-size="3" fill="#6f6552" text-anchor="middle">09:00</text>
+    <text x="50" y="41" font-size="3" fill="#6f6552" text-anchor="middle">12:00</text>
+    <text x="74" y="41" font-size="3" fill="#6f6552" text-anchor="middle">15:00</text>
+  </svg>
+
+  <div class="status">
+    <b>Status</b>
+    Built and working: an arc from sunrise to sunset with its own hour marks; events drawn as shadows with a start and a length; dragging a shadow changes when it starts and never how long it lasts; and the day survives a reload with no network.
+    <br><b>Release</b>: Windows EXE, Android APK and Linux binary, built from this source in CI — <a href="https://github.com/drsamonline/app-sundial/releases/tag/app-latest">app-latest</a>.
+    <br><b>Not built</b>: real solar geometry. The arc is a simple window between two times you can set, not a computed sunrise for your latitude — said here rather than implied by the shape.
+  </div>
+
+  <h2>What it does</h2>
+  <ul>
+    <li>Draws the day as an arc, with hour marks computed from the same arc the shadows use.</li>
+    <li>Adds an event as a shadow: a position on the arc and a length in minutes.</li>
+    <li>Drags a shadow to a new position — the start moves, the duration does not.</li>
+    <li>Exports and re-imports the day.</li>
+  </ul>
+
+  <h2>What it will not do</h2>
+  <ul>
+    <li><strong>Stretch a shadow when you move it.</strong> A duration is the length of the shadow.</li>
+    <li><strong>Let a position and an hour disagree.</strong> Both come from one function.</li>
+    <li><strong>Run past sunset.</strong> A shadow that would is clipped, and marked as clipped.</li>
+    <li><strong>Grow a second job.</strong> No tags, reminders or search.</li>
+    <li><strong>Use the internet.</strong> No <code>fetch</code>, no endpoint; CSP <code>connect-src 'none'</code>.</li>
+  </ul>
+
+  <h2>When things go wrong</h2>
+  <table>
+    <tr><th>Case</th><th>What happens</th></tr>
+    <tr><td>Bad input</td><td>No name, no length, a zero length, an event outside the dial, a dial where the sun sets before it rises — each refused with the field named.</td></tr>
+    <tr><td>No network</td><td>Nothing changes; the day is on the device.</td></tr>
+    <tr><td>Storage full or unavailable</td><td><strong>NOT SAVED</strong>, and the dial on screen is unchanged.</td></tr>
+    <tr><td>Corrupt saved state</td><td>Reported and offered for export; never replaced with an empty one — an empty dial looks like a clear day.</td></tr>
+  </table>
+
+  <h2>How to run it</h2>
+  <ul>
+    <li><strong>Here</strong>: <a href="play/index.html">play/index.html</a>, or install it from your browser's menu.</li>
+    <li><strong>Offline file</strong>: open <code>docs/play/index.html</code> straight from disk.</li>
+    <li><strong>Tests</strong>: <code>node tests/self-tests.js</code>.</li>
+  </ul>
+
+  <footer>PolyForm Noncommercial 1.0.0 · (c) 2026 Dr Sohil Momin · <a href="https://github.com/drsamonline/app-sundial">source</a></footer>
+</main></body></html>

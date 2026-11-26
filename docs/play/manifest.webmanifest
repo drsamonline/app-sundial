@@ -1,0 +1,11 @@
+{
+  "name": "Sundial — a calendar you schedule by drawing shadows",
+  "short_name": "Sundial",
+  "description": "The day is an arc from sunrise to sunset. An event is a shadow on it: where the shadow falls is when it starts, and how long it is is how long it lasts.",
+  "start_url": "./index.html", "scope": "./", "display": "standalone",
+  "background_color": "#fbf6ea", "theme_color": "#2b2416", "lang": "en-IN",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

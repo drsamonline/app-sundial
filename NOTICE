@@ -1,0 +1,29 @@
+NOTICE
+======
+
+Sundial — https://github.com/drsamonline/app-sundial
+Copyright 2026 Dr Sohil Momin. Licensed under PolyForm Noncommercial 1.0.0 (see LICENSE).
+
+Third-party components
+----------------------
+
+None. Sundial has no third-party dependency and no CDN.
+
+Vendored from this project's own kits (same licence, same author), copied verbatim on 26/11/2026:
+
+- web-kit 0.1.0 — docs/play/web-kit.js — the offline shell, storage helpers and PWA registration
+- export-kit 1.0.0 — docs/play/export-kit.js — Blob download, used for the day export
+
+Neither kit is modified. Neither makes a network request.
+
+Not real astronomy
+------------------
+
+The dial is an arc between two times you set — sunrise and sunset, defaulting to 06:00 and 18:00. It is not
+a computed sunrise for your latitude, and the app does not claim to be an almanac. What it does claim, and
+tests, is that a position and a time cannot disagree: both come from the same function.
+
+One surface, one job
+--------------------
+
+No tags, reminders, search or sync. The spec forbids a second job and the engine has no shape for one.
