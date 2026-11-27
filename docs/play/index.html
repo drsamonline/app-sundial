@@ -45,6 +45,24 @@
   ul.list li .meta{display:block;font-size:11px;color:var(--muted);font-family:var(--mono);margin-top:3px}
   footer{max-width:860px;margin:0 auto;padding:18px 20px 40px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
   [hidden]{display:none !important}
+
+  body{background:#efe4cc;color:#3a2f1d;font-family:Georgia,serif}
+  header.top{background:#f7efdd;border-bottom:1px solid #dcc9a4}
+  header.top h1{font-variant:small-caps;font-weight:400;letter-spacing:-.02em}
+  header.top a{color:#b8862f}
+  main{background:#f7efdd;max-width:900px}
+  .card{background:#fffaf0;border:1px solid #dcc9a4;border-radius:1px}
+  .card h2{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.18em;
+           text-transform:uppercase;color:#b8862f}
+  .card p.claim{color:#7a5a3a;font-style:italic}
+  button{border-radius:1px;border-color:#dcc9a4;background:#fffaf0}
+  button.primary{background:#3a2f1d;border-color:#3a2f1d;color:#f7efdd}
+  input[type=text]{background:#fffdf6;border-color:#dcc9a4;border-radius:1px}
+  ul.list li{background:#fffaf0;border-color:#dcc9a4;border-left-color:#b8862f;border-radius:1px}
+  .status.ok{border-color:#dcc9a4;background:#fbf5e6;color:#4a3a22}
+  .status.bad{border-color:#d8bcae;background:#fbeee7;color:#8a4222}
+  .sponsor{margin:22px 0 0;border-top:1px solid #dcc9a4;padding-top:12px;font-family:ui-monospace,monospace;font-size:11px;color:#7a5a3a}
+  .sponsor a{color:#b8862f;text-decoration:none;border-bottom:1px solid currentColor}
 </style>
 </head>
 <body>
@@ -95,6 +113,10 @@
     <span class="hint" id="ioNote"></span>
   </div>
 
+  <div class="sponsor">
+    <strong>Sponsor this app.</strong> Free, offline, no account. If it earned its keep:
+    <a href="https://github.com/sponsors/drsamonline">github.com/sponsors/drsamonline</a>
+  </div>
   <footer>
     Sundial keeps the day on this device. The dial's hour marks and the shadows are computed from the same arc, so a position and a time cannot
     disagree. No astronomy, no network — just an arc from sunrise to sunset.

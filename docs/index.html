@@ -1,83 +1,82 @@
 <!DOCTYPE html>
 <html lang="en-IN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sundial — a calendar you schedule by drawing shadows</title>
-<meta name="description" content="The day is an arc from sunrise to sunset. An event is a shadow on it: where the shadow falls is when it starts, and how long it is is how long it lasts.">
-<meta name="theme-color" content="#2b2416">
+<meta name="description" content="The day is an arc from sunrise to sunset. An event is a shadow on it.">
+<meta name="theme-color" content="#f7efdd">
 <style>
-  :root{--bg:#fbf6ea;--panel:#fffdf6;--ink:#2b2416;--muted:#6f6552;--line:#e4dcc6;--accent:#8a6a3a}
+  :root{--sky:#f7efdd;--ink:#3a2f1d;--ochre:#b8862f;--dusk:#7a5a3a;--rule:#dcc9a4;--serif:Georgia,"Iowan Old Style",serif;--mono:ui-monospace,Menlo,Consolas,monospace}
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
-  main{max-width:740px;margin:0 auto;padding:50px 20px 64px}
-  h1{font-size:33px;line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
-  .lede{font-size:18px;color:var(--muted);margin:0 0 26px}
-  .cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:9px}
-  .status{margin:26px 0;padding:14px 16px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;background:var(--panel);font-size:14px}
-  .status b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
-  h2{font-size:17px;margin:30px 0 8px}
-  ul{padding-left:20px}li{margin:4px 0}
-  code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:#f0e8d4;padding:1px 5px;border-radius:4px}
-  table{border-collapse:collapse;width:100%;font-size:14px;margin-top:8px}
-  th,td{text-align:left;border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top}
-  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
-  .dial{margin:22px 0;padding:0 0 8px}
-  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
-  a{color:var(--accent)}
+  body{margin:0;background:#efe4cc;color:var(--ink);font-family:var(--serif)}
+  .almanac{max-width:740px;margin:0 auto;background:var(--sky);padding:0 0 48px;box-shadow:0 0 0 1px #d8c7a3}
+  .head{padding:30px 34px 20px;border-bottom:1px solid var(--rule);text-align:center}
+  .head .k{font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--ochre)}
+  h1{font-size:clamp(34px,7vw,56px);margin:8px 0 4px;letter-spacing:-.03em;font-weight:400;font-variant:small-caps}
+  .head .d{font-style:italic;color:var(--dusk);margin:0;font-size:15.5px}
+  .dial{padding:10px 34px 0}
+  svg{width:100%;height:auto;display:block}
+  .legend{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--dusk);padding:2px 34px 0}
+  .body{padding:16px 34px 0;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media (max-width:600px){.body{grid-template-columns:1fr}.head,.dial,.body,.legend{padding-left:20px;padding-right:20px}}
+  h2{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);margin:0 0 6px}
+  p{font-size:15px;line-height:1.7;margin:0 0 12px}
+  .go{display:inline-block;background:var(--ink);color:var(--sky);text-decoration:none;padding:11px 20px;
+      font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;margin-top:4px}
+  .go:hover{background:var(--ochre)}
+  .sponsor{margin:24px 34px 0;border-top:1px solid var(--rule);padding-top:12px;font-family:var(--mono);font-size:11px;color:var(--dusk)}
+  .sponsor a{color:var(--ochre);text-decoration:none;border-bottom:1px solid currentColor}
+  .foot{margin:12px 34px 0;font-family:var(--mono);font-size:10.5px;color:var(--dusk);line-height:1.8}
+  .foot a{color:var(--ochre)}
 </style></head>
-<body><main>
-  <h1>Sundial</h1>
-  <p class="lede">A calendar you schedule by drawing shadows. The day is an arc from sunrise to sunset; an event is a shadow on it. <strong>Where the shadow falls is when it starts, and how long it is is how long it lasts.</strong></p>
-  <a class="cta" href="play/index.html">Open Sundial</a>
-
-  <svg class="dial" viewBox="0 0 100 42" width="100%" height="120" aria-label="the day as an arc">
-    <path d="M2 38 A 48 34 0 0 1 98 38" fill="none" stroke="#c9a86a" stroke-width="1.2"/>
-    <line x1="26" y1="38" x2="26" y2="16" stroke="#8a6a3a" stroke-width="2.4"/>
-    <line x1="50" y1="38" x2="50" y2="8" stroke="#8a6a3a" stroke-width="2.4"/>
-    <line x1="74" y1="38" x2="74" y2="16" stroke="#8a6a3a" stroke-width="2.4"/>
-    <text x="26" y="41" font-size="3" fill="#6f6552" text-anchor="middle">09:00</text>
-    <text x="50" y="41" font-size="3" fill="#6f6552" text-anchor="middle">12:00</text>
-    <text x="74" y="41" font-size="3" fill="#6f6552" text-anchor="middle">15:00</text>
-  </svg>
-
-  <div class="status">
-    <b>Status</b>
-    Built and working: an arc from sunrise to sunset with its own hour marks; events drawn as shadows with a start and a length; dragging a shadow changes when it starts and never how long it lasts; and the day survives a reload with no network.
-    <br><b>Release</b>: Windows EXE, Android APK and Linux binary, built from this source in CI — <a href="https://github.com/drsamonline/app-sundial/releases/tag/app-latest">app-latest</a>.
-    <br><b>Not built</b>: real solar geometry. The arc is a simple window between two times you can set, not a computed sunrise for your latitude — said here rather than implied by the shape.
+<body><div class="almanac">
+  <div class="head">
+    <div class="k">an almanac for one day</div>
+    <h1>Sundial</h1>
+    <p class="d">The day is an arc. An event is a shadow on it — where it falls is when it starts.</p>
   </div>
 
-  <h2>What it does</h2>
-  <ul>
-    <li>Draws the day as an arc, with hour marks computed from the same arc the shadows use.</li>
-    <li>Adds an event as a shadow: a position on the arc and a length in minutes.</li>
-    <li>Drags a shadow to a new position — the start moves, the duration does not.</li>
-    <li>Exports and re-imports the day.</li>
-  </ul>
+  <div class="dial">
+    <svg viewBox="0 0 600 210" role="img" aria-label="The arc of a day with three shadows on it">
+      <path d="M40 180 A 260 160 0 0 1 560 180" fill="none" stroke="#b8862f" stroke-width="2"/>
+      <g stroke="#dcc9a4" stroke-width="1">
+        <line x1="40" y1="180" x2="40" y2="168"/><line x1="170" y1="88" x2="176" y2="99"/>
+        <line x1="300" y1="56" x2="300" y2="68"/><line x1="430" y1="88" x2="424" y2="99"/>
+        <line x1="560" y1="180" x2="560" y2="168"/>
+      </g>
+      <g font-family="ui-monospace,monospace" font-size="11" fill="#7a5a3a">
+        <text x="26" y="200">06:00</text><text x="152" y="82">09:00</text><text x="288" y="48">12:00</text>
+        <text x="412" y="82">15:00</text><text x="536" y="200">18:00</text>
+      </g>
+      <g stroke="#3a2f1d" stroke-width="7" stroke-linecap="round">
+        <line x1="170" y1="88" x2="186" y2="130"/><line x1="300" y1="56" x2="316" y2="104"/>
+        <line x1="430" y1="88" x2="446" y2="126"/>
+      </g>
+      <g font-family="ui-monospace,monospace" font-size="10.5" fill="#3a2f1d">
+        <text x="158" y="150">standup</text><text x="288" y="124">review</text><text x="418" y="146">walk</text>
+      </g>
+    </svg>
+  </div>
+  <div class="legend"><span>sunrise 06:00</span><span>sunset 18:00</span></div>
 
-  <h2>What it will not do</h2>
-  <ul>
-    <li><strong>Stretch a shadow when you move it.</strong> A duration is the length of the shadow.</li>
-    <li><strong>Let a position and an hour disagree.</strong> Both come from one function.</li>
-    <li><strong>Run past sunset.</strong> A shadow that would is clipped, and marked as clipped.</li>
-    <li><strong>Grow a second job.</strong> No tags, reminders or search.</li>
-    <li><strong>Use the internet.</strong> No <code>fetch</code>, no endpoint; CSP <code>connect-src 'none'</code>.</li>
-  </ul>
+  <div class="body">
+    <div>
+      <h2>What it does</h2>
+      <p>Drag a shadow along the arc and its start time changes; the length of the shadow is the duration, and dragging never changes it. The hour marks and the shadows are computed from the same arc, so a position and a time cannot disagree.</p>
+    </div>
+    <div>
+      <h2>What it refuses</h2>
+      <p>A shadow that runs past sunset is clipped and marked — the day ends, and the app does not pretend otherwise.</p>
+      <a class="go" href="play/index.html">open the dial →</a>
+    </div>
+  </div>
 
-  <h2>When things go wrong</h2>
-  <table>
-    <tr><th>Case</th><th>What happens</th></tr>
-    <tr><td>Bad input</td><td>No name, no length, a zero length, an event outside the dial, a dial where the sun sets before it rises — each refused with the field named.</td></tr>
-    <tr><td>No network</td><td>Nothing changes; the day is on the device.</td></tr>
-    <tr><td>Storage full or unavailable</td><td><strong>NOT SAVED</strong>, and the dial on screen is unchanged.</td></tr>
-    <tr><td>Corrupt saved state</td><td>Reported and offered for export; never replaced with an empty one — an empty dial looks like a clear day.</td></tr>
-  </table>
-
-  <h2>How to run it</h2>
-  <ul>
-    <li><strong>Here</strong>: <a href="play/index.html">play/index.html</a>, or install it from your browser's menu.</li>
-    <li><strong>Offline file</strong>: open <code>docs/play/index.html</code> straight from disk.</li>
-    <li><strong>Tests</strong>: <code>node tests/self-tests.js</code>.</li>
-  </ul>
-
-  <footer>PolyForm Noncommercial 1.0.0 · (c) 2026 Dr Sohil Momin · <a href="https://github.com/drsamonline/app-sundial">source</a></footer>
-</main></body></html>
+  <div class="sponsor">
+    <strong>Sponsor this app.</strong> Free, offline, no account. If it earned its keep:
+    <a href="https://github.com/sponsors/drsamonline">github.com/sponsors/drsamonline</a>
+  </div>
+  <p class="foot">Real solar geometry is not built: the arc is a window between two settable times, not a computed
+  sunrise for a latitude.<br>Windows · Android · Linux at
+  <a href="https://github.com/drsamonline/app-sundial/releases/tag/app-latest">app-latest</a> ·
+  PolyForm Noncommercial 1.0.0 · (c) 2026 Dr Sohil Momin</p>
+</div></body></html>

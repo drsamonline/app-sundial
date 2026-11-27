@@ -9,6 +9,7 @@ on it. **Where the shadow falls is when it starts, and how long it is is how lon
 - **Plan row:** #28 of 37 in `drsamonline/forge` → `QUEUE/PLAN.json`
 - **Specs absorbed:** `app-sundial` (lead)
 - **Licence:** PolyForm Noncommercial 1.0.0
+- **Sponsor:** [github.com/sponsors/drsamonline](https://github.com/sponsors/drsamonline) — free, offline, no account
 
 ## Status
 
